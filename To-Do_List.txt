@@ -1,0 +1,47 @@
+bugs:
+
+there is an h in orange letters, but it will list lathe and latte (answer must have an h)
+
+    # letters in the right spot
+    green_letters = {
+        0 : 'l',
+        1 : 'a',
+        2 : '',
+        3 : '',
+        4 : 'e'
+    }
+
+    # letters in the word but in the wrong location
+    orange_letters = {
+        0 : '',
+        1 : 'lht',
+        2 : 'ael',
+        3 : 't',
+        4 : 'th'
+    }
+
+    # letters not in the word
+    gray_letters = 'fmbrickpodgysunbrksicksidsepbmymurkysooycusdlsuffporc'
+
+no suggestions, but the answer was dowry (why didn't it suggest dowry?):
+
+    # letters in the right spot
+    green_letters = {
+        0 : 'd',
+        1 : 'o',
+        2 : '',
+        3 : 'r',
+        4 : 'y'
+    }
+
+    # letters in the word but in the wrong location
+    orange_letters = {
+        0 : '',
+        1 : 'r',
+        2 : 'dr',
+        3 : 'd',
+        4 : ''
+    }
+
+    # letters not in the word
+    gray_letters = 'flamebickpgshuntbakeslicksliesleepbalmmuksotcauselalestuffpchlathehneia'
