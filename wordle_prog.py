@@ -20,11 +20,11 @@ import enchant, sys
 
 word_guesses = [
     # green and orange store the position of the letters (1 being the first letter)
-    {'word': 'flame', 'green': '3', 'orange': '2'},
-    {'word': 'brick', 'green': '', 'orange': ''},
-    {'word': 'podgy', 'green': '', 'orange': ''},
-    {'word': 'shunt', 'green': '12', 'orange': ''},
-    {'word': '', 'green': '', 'orange': ''},
+    {'word': 'flame', 'green': '15', 'orange': ''},
+    {'word': 'brick', 'green': '2', 'orange': ''},
+    {'word': 'podgy', 'green': '', 'orange': '2'},
+    {'word': 'shunt', 'green': '', 'orange': ''},
+    # {'word': 'minor', 'green': '25', 'orange': ''},
     {'word': '', 'green': '', 'orange': ''},
     {'word': '', 'green': '', 'orange': ''},
     {'word': '', 'green': '', 'orange': ''},
