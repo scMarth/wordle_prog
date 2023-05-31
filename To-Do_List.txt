@@ -1,47 +1,36 @@
 bugs:
 
-there is an h in orange letters, but it will list lathe and latte (answer must have an h)
+answer is probably elbow?
 
-    # letters in the right spot
-    green_letters = {
-        0 : 'l',
-        1 : 'a',
-        2 : '',
-        3 : '',
-        4 : 'e'
-    }
+    word_guesses = [
+        # green and orange store the position of the letters (1 being the first letter)
+        {'word': 'flame', 'green': '2', 'orange': '5'},
+        {'word': 'brick', 'green': '', 'orange': '1'},
+        {'word': 'podgy', 'green': '', 'orange': '2'},
+        {'word': 'shunt', 'green': '', 'orange': ''},
+        {'word': 'dwelt', 'green': '', 'orange': '234'},
+        {'word': 'tabby', 'green': '3', 'orange': ''},
+        {'word': 'party', 'green': '', 'orange': ''},
+        {'word': '', 'green': '', 'orange': ''},
+        {'word': '', 'green': '', 'orange': ''},
+        {'word': '', 'green': '', 'orange': ''},
+        {'word': '', 'green': '', 'orange': ''}
+    ]
 
-    # letters in the word but in the wrong location
-    orange_letters = {
-        0 : '',
-        1 : 'lht',
-        2 : 'ael',
-        3 : 't',
-        4 : 'th'
-    }
+known_letters[letters] -= 1
+fails because there is no letter e, there were 2 e's but the program only had 1 e in known letters. It doesn't know that the 2 e's are confirmed green in 2 different positions
 
-    # letters not in the word
-    gray_letters = 'fmbrickpodgysunbrksicksidsepbmymurkysooycusdlsuffporc'
-
-no suggestions, but the answer was dowry (why didn't it suggest dowry?):
-
-    # letters in the right spot
-    green_letters = {
-        0 : 'd',
-        1 : 'o',
-        2 : '',
-        3 : 'r',
-        4 : 'y'
-    }
-
-    # letters in the word but in the wrong location
-    orange_letters = {
-        0 : '',
-        1 : 'r',
-        2 : 'dr',
-        3 : 'd',
-        4 : ''
-    }
-
-    # letters not in the word
-    gray_letters = 'flamebickpgshuntbakeslicksliesleepbalmmuksotcauselalestuffpchlathehneia'
+    word_guesses = [
+        # green and orange store the position of the letters (1 being the first letter)
+        {'word': 'flame', 'green': '5', 'orange': ''},
+        {'word': 'brick', 'green': '', 'orange': '1'},
+        {'word': 'podgy', 'green': '', 'orange': '2'},
+        {'word': 'shunt', 'green': '', 'orange': '1'},
+        {'word': 'dwelt', 'green': '3', 'orange': ''},
+        {'word': 'tabby', 'green': '', 'orange': '3'},
+        {'word': 'party', 'green': '', 'orange': ''},
+        {'word': 'usurp', 'green': '', 'orange': '2'},
+        {'word': 'undue', 'green': '5', 'orange': ''},
+        {'word': '', 'green': '', 'orange': ''},
+        {'word': '', 'green': '', 'orange': ''}
+    ]
