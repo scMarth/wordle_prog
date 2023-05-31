@@ -20,28 +20,25 @@ import enchant, sys
 
 word_guesses = [
     # green and orange store the position of the letters (1 being the first letter)
-    {'word': 'flame', 'green': '5', 'orange': ''},
-    {'word': 'brick', 'green': '', 'orange': '1'},
-    {'word': 'podgy', 'green': '', 'orange': '2'},
-    {'word': 'shunt', 'green': '', 'orange': '1'},
-    {'word': 'dwelt', 'green': '3', 'orange': ''},
-    {'word': 'tabby', 'green': '', 'orange': '3'},
-    {'word': 'party', 'green': '', 'orange': ''},
-    {'word': 'usurp', 'green': '', 'orange': '2'},
-    {'word': 'undue', 'green': '5', 'orange': ''},
+    {'word': 'flame', 'green': '3', 'orange': '2'},
+    {'word': 'brick', 'green': '', 'orange': ''},
+    {'word': 'podgy', 'green': '', 'orange': ''},
+    {'word': 'shunt', 'green': '12', 'orange': ''},
+    {'word': '', 'green': '', 'orange': ''},
+    {'word': '', 'green': '', 'orange': ''},
+    {'word': '', 'green': '', 'orange': ''},
+    {'word': '', 'green': '', 'orange': ''},
     {'word': '', 'green': '', 'orange': ''},
     {'word': '', 'green': '', 'orange': ''}
 ]
 
 word_template = ['', '', '', '', '']
 
-known_letters = {}
-
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 possible_letters_template = [alphabet, alphabet, alphabet, alphabet, alphabet]
 
-known_letters = {}
+orange_letters = {}
 
 for guess in word_guesses:
     word = guess['word']
@@ -61,9 +58,9 @@ for guess in word_guesses:
 
             possible_letters_template[position] = letter
 
-            if letter not in found_letters:
-                found_letters[letter] = 0
-            found_letters[letter] += 1
+            # if letter not in found_letters:
+            #     found_letters[letter] = 0
+            # found_letters[letter] += 1
         
     if oranges:
         for orange in oranges:
@@ -72,6 +69,8 @@ for guess in word_guesses:
             letter = word[position]
             possible_letters_template[position] = possible_letters_template[position].replace(letter, '')
 
+            # print('orange {} found in {}'.format(letter, word))
+
             if letter not in found_letters:
                 found_letters[letter] = 0
             found_letters[letter] += 1
@@ -79,33 +78,34 @@ for guess in word_guesses:
     for i in range(0, len(word)):
         if str(i+1) not in greens and str(i+1) not in oranges: # gray letter found
             
+
             letter = word[i]
+
+            if letter in orange_letters:
+                continue
+
+            # print('gray {} found in {}'.format(letter, word))
 
             for j in range(0, len(possible_letters_template)):
                 possible_letters_template[j] = possible_letters_template[j].replace(letter, '')
     
     for letter in found_letters:
-        if letter in known_letters:
-            known_letters[letter] = max(known_letters[letter], found_letters[letter])
+        if letter in orange_letters:
+            orange_letters[letter] = max(orange_letters[letter], found_letters[letter])
         else:
-            known_letters[letter] = found_letters[letter]
+            orange_letters[letter] = found_letters[letter]
 
 print('\npossible letters template: {}\n'.format(possible_letters_template))
-print('\nknown letters: {}\n'.format(known_letters))
 
-for letters in possible_letters_template:
-    # if there is only one possible letter for that position, we know the position for the letter in known_letters
-    if len(letters) == 1:
-        known_letters[letters] -= 1
-        if known_letters[letters] == 0:
-            del known_letters[letters]
+# by now, orange_letters should only store letters whose letters we know are in the word but do not know the position of
+print('known letters with unknown positions:')
+for letter in orange_letters:
+    print('\tletter: {} quantity: {}'.format(letter, orange_letters[letter]))
 
-# by now, known_letters should only store letters whose letters we know are in the word but do not know the position of
-print('known letters with unknown positions: {}'.format(known_letters))
-print('processing combinations from templates...')
+print('\nprocessing combinations from templates...')
 
 complete_combinations = 0
-stack = [[possible_letters_template, known_letters]]
+stack = [[possible_letters_template, orange_letters]]
 
 while len(stack) != complete_combinations:
     template, knowns = stack.pop(0)
@@ -184,6 +184,7 @@ results = []
 # iterate over the fully simplified templates, if the word is an English word, put it in the list of results
 # print('all letters simplified:')
 for template, _ in stack:
+    # print(template)
 
     current_word = ''.join(template)
 
